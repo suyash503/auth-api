@@ -44,8 +44,6 @@ router.post('/login', async (req, res) => {
 });
 
 const protectRoute = require('../middleware/authMiddleware');
-const User = require('../models/User');
-
 router.get('/me', protectRoute, async (req, res) => {
     try {
         const user = await User.findById(req.user.userId).select('-password');
