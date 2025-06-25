@@ -1,0 +1,41 @@
+<body>
+    <h1>Protected Dashboard</h1>
+    <div id="profile"></div>
+    <h2>All Users</h2>
+    <ul id="user-list"></ul>
+
+    <script>
+        const token = localStorage.getItem('token');
+
+        fetch('http://localhost:5000/api/auth/me', {
+            headers: {
+                'Authorization': 'Bearer ' + token,
+            },
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.username) {
+                    document.getElementById('profile').innerText = `Welcome, ${data.username} (${data.email})`;
+                } else {
+                    window.location.href = 'index.html';
+                }
+            });
+
+        // New fetch: all users (you need to create this API route in backend)
+        fetch('http://localhost:5000/api/auth/users', {
+            headers: {
+                'Authorization': 'Bearer ' + token,
+            },
+        })
+            .then(res => res.json())
+            .then(users => {
+                const list = document.getElementById('user-list');
+                users.forEach(user => {
+                    const li = document.createElement('li');
+                    li.innerText = `${user.username} - ${user.email}`;
+                    list.appendChild(li);
+                });
+            });
+    </script>
+</body>
+  
