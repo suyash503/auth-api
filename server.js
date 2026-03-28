@@ -18,7 +18,12 @@ app.use('/api/auth', require('./routes/auth'));
 //new route
 app.use('/api/secret', require('./routes/secret')); // for protected route
 
+const path = require('path');
+
+// Tell Express to serve the static files in your frontend folder
+app.use(express.static(path.join(__dirname, 'public-frontend'))); 
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-    console.log(`Server running on http://localhost: ${PORT}`);
+    console.log(`Server running on port ${PORT}`);
 });
