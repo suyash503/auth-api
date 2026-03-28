@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:57349/api/auth';
+const API_BASE = '/api/auth'; 
 
 //SIGNUP
 document.getElementById('signup-form').addEventListener('submit', async (e) => {
