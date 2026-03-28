@@ -7,7 +7,7 @@
     <script>
         const token = localStorage.getItem('token');
 
-        fetch('http://localhost:5000/api/auth/me', {
+        fetch('/api/auth/me', {
             headers: {
                 'Authorization': 'Bearer ' + token,
             },
@@ -22,7 +22,7 @@
             });
 
         // New fetch: all users (you need to create this API route in backend)
-        fetch('http://localhost:5000/api/auth/users', {
+        fetch('/api/auth/users', {
             headers: {
                 'Authorization': 'Bearer ' + token,
             },
